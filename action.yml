@@ -1,7 +1,7 @@
 name: 'i18n-Parser'
 description: 'Parse csv with translations into json for i18next'
 inputs:
-  milliseconds:  # id of input
+  filePath:  # id of input
     description: 'Path of the csv file'
     required: true
     default: 'translations.csv'

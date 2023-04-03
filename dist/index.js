@@ -40,16 +40,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
-const wait_1 = __nccwpck_require__(817);
+const processCsv_1 = __nccwpck_require__(901);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const ms = core.getInput('milliseconds');
-            core.debug(`Waiting ${ms} milliseconds ...`); // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
-            core.debug(new Date().toTimeString());
-            yield (0, wait_1.wait)(parseInt(ms, 10));
-            core.debug(new Date().toTimeString());
-            core.setOutput('time', new Date().toTimeString());
+            const filePath = core.getInput("filePath");
+            // core.debug(`Waiting ${ms} milliseconds ...`)
+            // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
+            // core.debug(new Date().toTimeString())
+            core.debug(`filePath: ${filePath}`);
+            yield (0, processCsv_1.processCsv)(filePath);
+            // core.debug(new Date().toTimeString())
+            // core.setOutput('time', new Date().toTimeString())
         }
         catch (error) {
             if (error instanceof Error)
@@ -58,11 +60,15 @@ function run() {
     });
 }
 run();
+// modificar o codigo
+// npm run build && npm run package
+// git push
+// dashboard -> rodar o workflow
 
 
 /***/ }),
 
-/***/ 817:
+/***/ 901:
 /***/ (function(__unused_webpack_module, exports) {
 
 "use strict";
@@ -77,18 +83,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.wait = void 0;
-function wait(milliseconds) {
+exports.processCsv = void 0;
+function processCsv(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise(resolve => {
-            if (isNaN(milliseconds)) {
-                throw new Error('milliseconds not a number');
-            }
-            setTimeout(() => resolve('done!'), milliseconds);
+            // 1. read csv file
+            // 2. ver quais idiomas, cada idioma é uma coluna
+            // key, en, pt -> [en, pt]
+            // 3. função para processar a coluna do idioma
+            // lodash set -> https://lodash.com/docs/4.17.15#set
+            // 3.1 criar um objeto vazio (let object);
+            // 3.2 loop em cada linha _.set(object, key, valor da coluna);
+            // 4. salvar o arquivo
+            // 4.1 é salvar o object como json
+            // 3 e 4 tem que ser para cada idioma
+            // main.ts -> commit dos arquivos
+            // retornar os nomes dos arquivos criados
+            resolve("Done");
         });
     });
 }
-exports.wait = wait;
+exports.processCsv = processCsv;
 
 
 /***/ }),
