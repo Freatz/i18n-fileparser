@@ -8,8 +8,9 @@ async function run(): Promise<void> {
     // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
 
     // core.debug(new Date().toTimeString())
+    console.log(filePath);
     core.debug(`filePath: ${filePath}`);
-    await processCsv(filePath);
+    await processCsv("tranlsations.csv");
     // core.debug(new Date().toTimeString())
 
     // core.setOutput('time', new Date().toTimeString())
