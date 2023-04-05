@@ -19,10 +19,10 @@ const buildFiles = async (data: any[], lang: string) => {
   }
   const objToWrite = JSON.stringify(obj, null, 2);
 
-  // fs.writeFile(`${lang}.json`, objToWrite, (err: any) => {
-  //   if (err) throw err;
-  //   console.log(`Translation to ${lang} written to file.`);
-  // });
+  fs.writeFile(`${lang}.json`, objToWrite, (err: any) => {
+    if (err) throw err;
+    console.log(`Translation to ${lang} written to file.`);
+  });
 };
 
 export async function processCsv(filePath: string): Promise<any> {

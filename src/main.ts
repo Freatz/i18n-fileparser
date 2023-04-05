@@ -4,16 +4,8 @@ import { processCsv } from "./processCsv";
 async function run(): Promise<void> {
   try {
     const filePath: string = core.getInput("filePath");
-    // core.debug(`Waiting ${ms} milliseconds ...`)
-    // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
-
-    // core.debug(new Date().toTimeString())
-    console.log(filePath);
     core.debug(`filePath: ${filePath}`);
     await processCsv("tranlsations.csv");
-    // core.debug(new Date().toTimeString())
-
-    // core.setOutput('time', new Date().toTimeString())
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);
   }
