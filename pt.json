@@ -1,0 +1,398 @@
+{
+  "alerts": {
+    "errorComponent": {
+      "title": "Algo deu errado.",
+      "subtitle": "Nosso time já foi notificado."
+    },
+    "blockingComponent": {
+      "title": "Opss... Nada para ver aqui, por enquanto.",
+      "text": "Parece que seu estabelecimento não foi avaliado ainda. Mas não se preocupe! Você será notificado assim que alguma avaliação for disponibilizada.",
+      "subtitle": "Até breve!"
+    },
+    "loading": "Carregando ...",
+    "pageError404": "Erro 404 - Página não encontrada"
+  },
+  "amountsInvolved": {
+    "sectionTitle": "Valores envolvidos",
+    "chartTitle": "Valores por tipo de refeição"
+  },
+  "bestDayWeek": {
+    "sectionTitle": "Melhor dia da semana",
+    "info": "Estudos mostram que um usuário recorrente tende a consumir mais do que os novos consumidores. Isso se deve à uma natural percepção de confiança na marca e conhecer os preços do local e já ir preparado para a despesa. Em alguns casos, no entanto, e a depender do tipo do restaurante, os novos usuários tendem a gastar mais por não conhecerem a especificidade da casa - o que pode ser uma falha de comunicação. A grande métrica, no entanto, é aumentar o ticket médio dos usuários recorrentes, pois dão uma previsibilidade de receita mais certa e esperada."
+  },
+  "bubbleChart": {
+    "axisLabel": {
+      "Y": "Fator Encantamento",
+      "X": {
+        "nps": "NPS",
+        "return_probability": "Probabilidade de retorno"
+      }
+    },
+    "wowLabel": [
+      "Muito insatisfeito",
+      "Insatisfeito",
+      "Neutro",
+      "Satisfeito",
+      "Muito satisfeito"
+    ],
+    "chartLabel": {
+      "green": "Amantes/Clientes mais valiosos (Ação: continuar encantando)",
+      "blue": "Clientes insatisfeitos, mas ainda recomendam (Falta o fator encantamento)",
+      "yellow": "Clientes satisfeitos, mas não recomendam (Ação: Gerar boca a boca)",
+      "red": "Clientes insatisfeitos (Ação: Conquistá-los)"
+    },
+    "peopleWithCount_one": "{{count}} pessoa",
+    "peopleWithCount_other": "{{count}} pessoas"
+  },
+  "changePassword": {
+    "title": "Alterar minha senha",
+    "submitButton": "Concluir",
+    "oldPasswordField": "Senha atual *",
+    "newPasswordField": "Nova senha *",
+    "confirmNewPasswordField": "Confirmar nova senha *",
+    "requiredError": "Este campo é obrigatório.",
+    "matchPasswordError": "As senhas não coincidem."
+  },
+  "charts": {
+    "filter_1": "Filtro 1",
+    "filter_2": "Filtro 2",
+    "wordCloudTooltip_one": "{{count}} ocorrência",
+    "wordCloudTooltip_other": "{{count}} ocorrências",
+    "wordCloudError": "Não há dados disponíveis."
+  },
+  "consumptionProfile": {
+    "sectionTitle": "Comportamento",
+    "chartTitle": [
+      "Novos clientes vs clientes recorrentes",
+      "Tipo de refeição",
+      "Pessoas que vão sozinhas x Pessoas que vão acompanhadas",
+      "Gasto médio por sexo",
+      "Gasto médio por idade",
+      "Tipo de Alimentação x Número de acompanhantes"
+    ],
+    "table": {
+      "errorWarning": "Sem dados",
+      "buttonClose": "Fechar",
+      "buttonOpen": "Entenda por quê",
+      "daysWeek": [
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Sábado",
+        "Domingo"
+      ]
+    }
+  },
+  "costToProfit": {
+    "sectionTitle": "Custo-benefício"
+  },
+  "crossAnalysis": {
+    "sectionTitle": "Relembrando suas Notas Principais",
+    "OKRCardsTitle": [
+      "Percepção da marca",
+      "Percepção do preço",
+      "Indicabilidade",
+      "Recompra"
+    ],
+    "info": "Esta seção do painel fornece respostas as perguntas específicas relacionadas ao comportamento do consumidor, por meio da análise cruzada de dados não estruturados, que combinam diferentes pontos de dados coletados por meio de nossas pesquisas. A análise não é estatística e pode variar depois que nosso algoritmo de Inteligência Artificial analisa o mesmo conjunto de dados (dados estruturados). No entanto, as informações a seguir são ricas em fornecer uma boa visão e um sentimento geral do que está impulsionando suas classificações para cima ou para baixo.",
+    "sections": [
+      {
+        "description": "Fator Encantamento",
+        "title": "O que puxa sua nota para cima ou para baixo? Quais os Indicadores positivos e negativos?"
+      },
+      {
+        "description": "Custo-benefício",
+        "title": "Onde seu preço está mais salgado?"
+      },
+      {
+        "description": "Probabilidade de retorno",
+        "title": "Por que seus clientes não te indicam para familiares e amigos?"
+      },
+      {
+        "description": "Probabilidade de retorno",
+        "title": "Por que o cliente não volta?"
+      }
+    ],
+    "bestDayTitle": "Qual é o seu melhor dia da semana?",
+    "frequencyTitle": "Os seus clientes são fiéis à sua marca?",
+    "missingProductsTitle": "O produto solicitado estava em falta?",
+    "tabsInstruction": "Clique nas abas abaixo contendo as notas e veja as notas de cada categoria que seus consumidores atribuíram. Caso o seu nível de encantamento esteja baixo, analise o impacto das categorias que possuam nota abaixo de 3.",
+    "goalTitle": "Referência / Objetivo",
+    "goalText": "70% (pelo menos) dos seus consumidores devem avaliar 5 estrelas. Abaixo você pode ver o detalhamento da classificação por categoria.",
+    "categoryTitle": "Avaliação por categoria:",
+    "perceptionTitle": "Percepção de {{title}}",
+    "itemRatingTitle": "Nota de {{category}}"
+  },
+  "customerLoyality": {
+    "sectionTitle": "Percepção de fidelidade de consumo"
+  },
+  "demographicalProfile": {
+    "sectionTitle": "Perfil demográfico e comportamento ",
+    "genderChartTitle": "faixa etária",
+    "spendChartTitle": "Gasto médio por experiência neste(s) restaurante(s)",
+    "incomeChartTitle": "Renda familiar"
+  },
+  "establishmentOneWord": {
+    "sectionTitle": "Estabelecimento resumido em uma palavra"
+  },
+  "filter": {
+    "selectText": "Selecionar filtros",
+    "compareText": "Comparar com",
+    "buttonCompare": {
+      "add": "Adicionar comparação",
+      "remove": "Remover comparação"
+    },
+    "buttonApply": "Aplicar",
+    "badgeTitle": {
+      "compare": "Comparando filiais",
+      "filteringWithCount": "Filtrando {{count}} filiais"
+    },
+    "tag": {
+      "one": "Filtro 1",
+      "two": "Filtro 2"
+    },
+    "startDateLabel": "Data inicial",
+    "endDateLabel": "Data final",
+    "branchesLabel": "Filiais",
+    "optionAllBranches": "Todas filiais",
+    "optionAll": "Todos de"
+  },
+  "guideSection": {
+    "tooltip": "Guiar esta seção",
+    "last": "Entendi",
+    "back": "Voltar",
+    "close": "Fechar",
+    "next": "Próximo",
+    "open": "Abrir",
+    "skip": "Pular"
+  },
+  "headerMenu": {
+    "buttonLogout": "Sair",
+    "buttonPassword": "Mudar senha",
+    "buttonClient": "Mudar cliente"
+  },
+  "individualReviews": {
+    "sectionTitle": "Avaliações individuais",
+    "sectionTitle2": "Avaliação individual",
+    "searchLabel": "Pesquisar",
+    "sortLabel": "Ordernar por",
+    "sortOptions": {
+      "date_desc": "Mais recentes primeiro",
+      "date_asc": "Mais antigos primeiro",
+      "grade_asc": "Maior nota Encantamento",
+      "grade_desc": "Menor nota Encantamento",
+      "name_asc": "Nome da Filial (A-Z)",
+      "name_desc": "Nome da Filial (Z-A)"
+    },
+    "buttonReview": "Ver avaliação",
+    "buttonReceipt": "Recibo",
+    "grades": {
+      "wow": "Fator Encantamento",
+      "perception": "Percepção de valor",
+      "return": "Probabilidade de Retorno",
+      "nps": "Índice de Recomendação (NPS)"
+    },
+    "profile": {
+      "value": "Valor gasto",
+      "guests": "Nº de acompanhantes",
+      "frequency": "Frequência ao estabelecimento",
+      "reason": "Motivo da visita",
+      "word": "Estabelecimento em uma palavra"
+    },
+    "reviewId": "Avaliação",
+    "formNotApply": "Não se aplica"
+  },
+  "likelihoodOfReturn": {
+    "sectionTitle": "Probabilidade de retorno"
+  },
+  "login": {
+    "title": "Painel de Inteligência de Gestão",
+    "description": "Insights de consumo acionáveis em tempo real e ao seu alcance.",
+    "iconsTitle": [
+      "Pesquisas detalhadas",
+      "Análise de dados",
+      "Inteligência Artificial"
+    ],
+    "greeting": "Bem-vindo(a)",
+    "loginMessage": "Já é nosso cliente? Acesse sua conta.",
+    "loginButton": "Entrar",
+    "passwordField": "Senha",
+    "requiredField": "Este campo é obrigatório.",
+    "validEmailField": "É necessário informar um email válido.",
+    "adminMessage": "Somente para uso interno.",
+    "adminTitle": "Acesso administrativo",
+    "modalClientTitle": "Selecionar cliente",
+    "modalSearchField": "Procurar cliente"
+  },
+  "marketComparison": {
+    "sectionTitle": "Comparativo com o mercado",
+    "labelNames": {
+      "average": "Minha média",
+      "market_bottom": "Mínima do mercado",
+      "market_average": "Média do mercado",
+      "market_top": "Máxima do mercado"
+    }
+  },
+  "netPromoterScore": {
+    "sectionTitle": "Net Promoter Score (NPS)",
+    "npsChartLabel": {
+      "promoter": "Promotor",
+      "neutral": "Neutro",
+      "detractor": "Detrator"
+    },
+    "npsCards": {
+      "consumerThinkSublimed": "Pensamento do consumirdor: ",
+      "from100to0": {
+        "title": "De -100 a 0",
+        "text": "As dores são enormes e o risco de médio/longo prazo são enormes. Clientes não voltam e não indicam, e seu custo de aquisição de novo cliente é alto.",
+        "text2": "Experiência frustrante e péssima. Jamais indicarei. Posso até voltar, mas só por muita falta de opção e raramente."
+      },
+      "from1to50": {
+        "title": "De 1 a 50",
+        "text": "Há algumas dores a serem observadas. Está longe de encantar, e ainda precisa entender a jornada, os interesses e o que os clientes buscam.",
+        "text2": "Até posso ter gostado, e posso até indicar, mas fiquei com a impressão de um “porém”. Volto, mas com ressalvas."
+      },
+      "from51to75": {
+        "title": "De 51 a 75",
+        "text": "Existem pequenas dores a serem observadas. O cliente vê a qualidade, mas não percebe o encantamento. O estabelecimento precisa achar seu ponto forte.",
+        "text2": "Produto, Atendimento e Estrutura muito bons, mas faltou aquele algo a mais. Mas sem dúvidas recomendo."
+      },
+      "from76to100": {
+        "title": "De 76 a 100",
+        "text": "Entrega perfeita de produto, atendimento e estrutura para expectativa comunicada ao público. O serviço foi tido como uma experiência impactante.",
+        "text2": "Tive uma ótima experiência, e fez meu dia melhor. Recomendo totalmente essa empresa."
+      }
+    }
+  },
+  "newRecurrentCustomer": {
+    "sectionTitle": "Novos clientes vs Clientes recorrentes em valores"
+  },
+  "npsVSWowFactor": {
+    "sectionTitle": "NPS vs Fator Encantamento"
+  },
+  "operationalMetrics": {
+    "sectionTitle": "Métricas operacionais",
+    "satisfaction": [
+      "Muito Insatisfeito",
+      "Insatisfeito",
+      "Neutro",
+      "Satisfeito",
+      "Muito Satisfeito"
+    ],
+    "infographicMessage": "Entenda o impacto emocional da satisfação nas chances de novas compras futuras.",
+    "infographicButton": "Ver infográfico de impacto emocional"
+  },
+  "overallRating": {
+    "sectionTitle": "Métricas principais",
+    "marketReference": [
+      "Máxima do mercado:",
+      "Média do mercado:",
+      "Mínimo do mercado:"
+    ],
+    "averageTitle": "Indicadores de desempenho",
+    "performanceTitle": {
+      "best": "Melhores indicadores",
+      "worse": "Piores indicadores"
+    }
+  },
+  "performanceFramework": {
+    "sectionTitle": "Relatório de desempenho individual",
+    "overviewTitle": "Visão geral",
+    "detailsTitle": "Desempenho detalhado",
+    "reviewsTitle": "Avaliações",
+    "comparisonTitle": "Comparação com outros funcionários",
+    "filter": {
+      "title": "Selecione um funcionário e o turno que você queira ver no relatório.",
+      "appliedText": "Os seguintes filtros estão sendo aplicados:",
+      "branchLabel": "Filial",
+      "waiterLabel": "Nome do funcionário",
+      "monthLabel": "Mês",
+      "shiftLabel": "Turno",
+      "buttonApply": "Aplicar",
+      "buttonCancel": "Cancelar",
+      "noOptionsText": "Sem opções",
+      "buttonEdit": "Editar filtros"
+    },
+    "toggleGroup": {
+      "urgent": "Urgente",
+      "quick": "Corrigir",
+      "strength": "Manter",
+      "neutral": "Indiferente",
+      "noKpi": "Sem indicadores"
+    },
+    "buttonReview": "Ver avaliação",
+    "comparisonChartLabel": "Pontuação de desempenho"
+  },
+  "photosReview": {
+    "sectionTitle": "Fotos das avaliações",
+    "sortLabel": "Ordernar por",
+    "sortOptions": {
+      "date_desc": "Mais recentes",
+      "date_asc": "Mais antigos",
+      "grade_asc": "Maior Encantamento",
+      "grade_desc": "Menor Encantamento",
+      "score_desc": "Mais relevante (IA)"
+    },
+    "showButton": "Mostrar mais",
+    "searchLabel": "Procurar fotos",
+    "searchButton": "Buscar",
+    "modal": {
+      "tooltip": "Fechar",
+      "wowText": "Encantamento",
+      "reviewButton": "Avaliação completa",
+      "comment": {
+        "text": "Comentário destaque baseado nesta foto, ",
+        "sublimed": "selecionado pela IA."
+      },
+      "otherPhotosDescription": "Outras fotos dessa avaliação:"
+    }
+  },
+  "ranking": {
+    "sectionTitle": "Ranking",
+    "filter": {
+      "label": "Tipo de operação"
+    },
+    "intervalModal": {
+      "title": "Editar intervalos",
+      "subtitle": "Selecione um intervalo de tempo para gerar um ranking.",
+      "monthLabel": "Mês",
+      "compareLabel": "Comparar mês (Opcional)",
+      "allOption": "Todos os meses"
+    },
+    "time": {
+      "title": "Tempo",
+      "subtitle": "Evolução ao longo do tempo da posição no ranking.",
+      "filterLabel": "Selecionar filial",
+      "filterOption": "Todas filiais",
+      "chartLegend": "Classificação"
+    },
+    "table": {
+      "all": "Todos",
+      "position": "Posição",
+      "branch": "Filial"
+    }
+  },
+  "returnVSWowFactor": {
+    "sectionTitle": "Probabilidade de retorno vs Fator Encantamento"
+  },
+  "sampleSize": {
+    "sectionTitle": "Volume de pessoas"
+  },
+  "satisfactionIndex": {
+    "sectionTitle": "Índice de Encantamento"
+  },
+  "sidebar": {
+    "overview": "Resumo Estruturado",
+    "consumer": "Público",
+    "consumption": "Perfil de Consumo",
+    "emotional": "Avaliação Geral",
+    "cross": "Cruzamento de Dados",
+    "performance": "Quadro de Desempenho Individual",
+    "reviews": "Avaliações",
+    "photos": "Galeria de Fotos",
+    "ranking": "Ranking",
+    "collapse": "Ocultar"
+  }
+}

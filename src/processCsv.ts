@@ -1,5 +1,6 @@
 const fs = require("fs");
 const csv = require("csv-parser");
+const _ = require("lodash");
 
 const readCsv = async (filepath: string) => {
   const records = [];
@@ -11,35 +12,26 @@ const readCsv = async (filepath: string) => {
   return records;
 };
 
+const buildFiles = async (data: any[], lang: string) => {
+  let obj = {};
+  for (const row of data) {
+    _.set(obj, row.key, row[lang]);
+  }
+  const objToWrite = JSON.stringify(obj, null, 2);
+
+  // fs.writeFile(`${lang}.json`, objToWrite, (err: any) => {
+  //   if (err) throw err;
+  //   console.log(`Translation to ${lang} written to file.`);
+  // });
+};
+
 export async function processCsv(filePath: string): Promise<any> {
   const data = await readCsv(filePath);
-  console.log(data);
+  const languageKeys = Object.keys(data[0]).slice(1);
+
+  languageKeys.forEach((language) => buildFiles(data, language));
+
   return data;
-  // return new Promise((resolve) => {
-  // let results: string[] = [];
-  // let languages: string[] = [];
-
-  // const parser = fs.createReadStream(filePath).pipe(csv());
-
-  // parser.on("readable", function () {
-  //   let record;
-  //   while ((record = parser.read()) !== null) {
-  //     results.push(record);
-  //   }
-  // });
-  // parser.end();
-
-  // console.log(results);
-  // .on("data", (row: any) => {
-  //   results.push(row);
-  // })
-  // .on("headers", (headers: any[]) => {
-  //   languages = headers.slice(1);
-  //   console.log(languages);
-  // })
-  // .on("end", () => {
-  //   //console.log(results);
-  // });
 
   // 1. read csv file
   // 2. ver quais idiomas, cada idioma é uma coluna
