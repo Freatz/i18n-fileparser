@@ -24,6 +24,7 @@ async function run(): Promise<void> {
 
       files = await processNotion(notionSecret, notionId);
     }
+    
     await commitAndPush(token, files);
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);

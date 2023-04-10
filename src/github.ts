@@ -77,8 +77,9 @@ export const createBlobForFile =
   };
 
 export const getCurrentCommit = async (token: string) => {
-  const octokit = github.getOctokit(token);
   const { repo, owner } = github.context.repo;
+  core.info(`repo: ${repo}, owner: ${owner}, ref: ${github.context.ref}`);
+  const octokit = github.getOctokit(token);
 
   const { data: refData } = await octokit.rest.git.getRef({
     owner,
