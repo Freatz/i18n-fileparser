@@ -257,13 +257,13 @@ const buildCSVFiles = (data, lang) => __awaiter(void 0, void 0, void 0, function
     for (const row of data) {
         _.set(obj, row.key, row[lang]);
     }
-    return (0, writer_1.writeJSONFile)(obj, lang);
+    return yield (0, writer_1.writeJSONFile)(obj, lang);
 });
 function processCSV(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
         const data = yield readCsv(filePath);
         const languageKeys = Object.keys(data[0]).slice(1);
-        return languageKeys.map((language) => buildCSVFiles(data, language));
+        return languageKeys.map((language) => __awaiter(this, void 0, void 0, function* () { return yield buildCSVFiles(data, language); }));
     });
 }
 exports.processCSV = processCSV;

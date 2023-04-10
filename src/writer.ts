@@ -10,5 +10,6 @@ export const writeJSONFile = async (data: any, language: string) => {
     if (err) throw err;
     core.info(`Translation to ${language} written to file.`);
   });
+  
   return path;
 };
