@@ -267,6 +267,7 @@ function processCSV(filePath) {
     });
 }
 exports.processCSV = processCSV;
+// [{}, {}]
 
 
 /***/ }),
@@ -423,7 +424,7 @@ const writeJSONFile = (data, language) => __awaiter(void 0, void 0, void 0, func
     const objToWrite = JSON.stringify(data, null, 2);
     const destination = core.getInput("destination");
     const path = `${language}.json`;
-    fs.writeFile(path, objToWrite, (err) => {
+    yield fs.writeFile(path, objToWrite, (err) => {
         if (err)
             throw err;
         core.info(`Translation to ${language} written to file.`);

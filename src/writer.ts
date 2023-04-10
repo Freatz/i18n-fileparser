@@ -6,10 +6,11 @@ export const writeJSONFile = async (data: any, language: string) => {
   const destination: string = core.getInput("destination");
   const path = `${language}.json`;
 
-  fs.writeFile(path, objToWrite, (err: any) => {
+  await fs.writeFile(path, objToWrite, (err: any) => {
     if (err) throw err;
     core.info(`Translation to ${language} written to file.`);
   });
-  
+
   return path;
 };
+

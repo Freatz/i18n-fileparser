@@ -24,7 +24,7 @@ async function run(): Promise<void> {
 
       files = await processNotion(notionSecret, notionId);
     }
-    
+
     await commitAndPush(token, files);
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);
@@ -32,3 +32,6 @@ async function run(): Promise<void> {
 }
 
 run();
+
+// npm run build && npm run package
+// git add commit
