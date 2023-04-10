@@ -26,5 +26,5 @@ export async function processCSV(filePath: string): Promise<any> {
   const data = await readCsv(filePath);
   const languageKeys = Object.keys(data[0]).slice(1);
 
-  return languageKeys.forEach((language) => buildCSVFiles(data, language));
+  return languageKeys.map((language) => buildCSVFiles(data, language));
 }

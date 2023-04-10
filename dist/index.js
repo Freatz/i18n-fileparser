@@ -263,7 +263,7 @@ function processCSV(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
         const data = yield readCsv(filePath);
         const languageKeys = Object.keys(data[0]).slice(1);
-        return languageKeys.forEach((language) => buildCSVFiles(data, language));
+        return languageKeys.map((language) => buildCSVFiles(data, language));
     });
 }
 exports.processCSV = processCSV;
