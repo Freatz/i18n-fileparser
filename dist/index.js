@@ -46,17 +46,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.setBranchToCommit = exports.getCurrentCommit = exports.createBlobForFile = exports.createNewCommit = exports.createNewTree = void 0;
 const core = __importStar(__nccwpck_require__(2186));
-const github_1 = __importDefault(__nccwpck_require__(5438));
+const github = __importStar(__nccwpck_require__(5438));
 const fs_extra_1 = __nccwpck_require__(5630);
 const createNewTree = (token, blobs, paths, parentTreeSha) => __awaiter(void 0, void 0, void 0, function* () {
-    const octokit = github_1.default.getOctokit(token);
-    const { repo, owner } = github_1.default.context.repo;
+    const octokit = github.getOctokit(token);
+    const { repo, owner } = github.context.repo;
     core.debug(`repo: ${repo}, owner: ${owner}`);
     const tree = blobs.map(({ sha }, index) => ({
         path: paths[index],
@@ -74,8 +71,8 @@ const createNewTree = (token, blobs, paths, parentTreeSha) => __awaiter(void 0, 
 });
 exports.createNewTree = createNewTree;
 const createNewCommit = (token, message, currentTreeSha, currentCommitSha) => __awaiter(void 0, void 0, void 0, function* () {
-    const octokit = github_1.default.getOctokit(token);
-    const { repo, owner } = github_1.default.context.repo;
+    const octokit = github.getOctokit(token);
+    const { repo, owner } = github.context.repo;
     const response = yield octokit.rest.git.createCommit({
         owner,
         repo,
@@ -88,9 +85,9 @@ const createNewCommit = (token, message, currentTreeSha, currentCommitSha) => __
 exports.createNewCommit = createNewCommit;
 const getFileAsUTF8 = (filePath) => (0, fs_extra_1.readFile)(filePath, "utf8");
 const createBlobForFile = (token) => (filePath) => __awaiter(void 0, void 0, void 0, function* () {
-    const octokit = github_1.default.getOctokit(token);
+    const octokit = github.getOctokit(token);
     const content = yield getFileAsUTF8(filePath);
-    const { repo, owner } = github_1.default.context.repo;
+    const { repo, owner } = github.context.repo;
     const blobData = yield octokit.rest.git.createBlob({
         owner,
         repo,
@@ -101,13 +98,13 @@ const createBlobForFile = (token) => (filePath) => __awaiter(void 0, void 0, voi
 });
 exports.createBlobForFile = createBlobForFile;
 const getCurrentCommit = (token) => __awaiter(void 0, void 0, void 0, function* () {
-    const { repo, owner } = github_1.default.context.repo;
-    core.info(`repo: ${repo}, owner: ${owner}, ref: ${github_1.default.context.ref}`);
-    const octokit = github_1.default.getOctokit(token);
+    const { repo, owner } = github.context.repo;
+    core.info(`repo: ${repo}, owner: ${owner}, ref: ${github.context.ref}`);
+    const octokit = github.getOctokit(token);
     const { data: refData } = yield octokit.rest.git.getRef({
         owner,
         repo,
-        ref: github_1.default.context.ref,
+        ref: github.context.ref,
     });
     const commitSha = refData.object.sha;
     const { data: commitData } = yield octokit.rest.git.getCommit({
@@ -122,12 +119,12 @@ const getCurrentCommit = (token) => __awaiter(void 0, void 0, void 0, function* 
 });
 exports.getCurrentCommit = getCurrentCommit;
 const setBranchToCommit = (token, commitSha) => {
-    const octokit = github_1.default.getOctokit(token);
-    const { repo, owner } = github_1.default.context.repo;
+    const octokit = github.getOctokit(token);
+    const { repo, owner } = github.context.repo;
     return octokit.rest.git.updateRef({
         owner,
         repo,
-        ref: github_1.default.context.ref,
+        ref: github.context.ref,
         sha: commitSha,
     });
 };
