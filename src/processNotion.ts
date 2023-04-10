@@ -10,7 +10,7 @@ const buildNotionFiles = async (data: any[], lang: string) => {
     const content = page.properties[lang].rich_text[0].text.content;
     _.set(obj, key, content);
   }
-  writeJSONFile(obj, lang);
+  return writeJSONFile(obj, lang);
 };
 
 export async function processNotion(
@@ -28,6 +28,7 @@ export async function processNotion(
   const languageNotionKeys = Object.keys(
     notionPages.results[0].properties
   ).slice(0, -1);
+
   return languageNotionKeys.forEach((language) =>
     buildNotionFiles(notionPages.results, language)
   );

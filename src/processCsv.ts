@@ -1,6 +1,7 @@
 const fs = require("fs");
 const csv = require("csv-parser");
 const _ = require("lodash");
+
 import { writeJSONFile } from "./writer";
 
 const readCsv = async (filepath: string) => {
@@ -18,7 +19,7 @@ const buildCSVFiles = async (data: any[], lang: string) => {
   for (const row of data) {
     _.set(obj, row.key, row[lang]);
   }
-  writeJSONFile(obj, lang);
+  return writeJSONFile(obj, lang);
 };
 
 export async function processCSV(filePath: string): Promise<any> {

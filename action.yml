@@ -7,6 +7,10 @@ inputs:
     description: "Secret to connect with Notion"
   notionID:
     description: "Database ID"
+  myToken:
+    description: "Token for github"
+  destination:
+    description: "Path of the destination for the translation files"
 runs:
   using: "node16"
   main: "dist/index.js"
