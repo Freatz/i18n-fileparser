@@ -101,8 +101,9 @@ const createBlobForFile = (token) => (filePath) => __awaiter(void 0, void 0, voi
 });
 exports.createBlobForFile = createBlobForFile;
 const getCurrentCommit = (token) => __awaiter(void 0, void 0, void 0, function* () {
-    const octokit = github_1.default.getOctokit(token);
     const { repo, owner } = github_1.default.context.repo;
+    core.info(`repo: ${repo}, owner: ${owner}, ref: ${github_1.default.context.ref}`);
+    const octokit = github_1.default.getOctokit(token);
     const { data: refData } = yield octokit.rest.git.getRef({
         owner,
         repo,
@@ -376,14 +377,14 @@ const core = __importStar(__nccwpck_require__(2186));
 // push
 const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, function* () {
     const currentCommit = yield (0, github_1.getCurrentCommit)(token);
-    core.debug(`currentCommit: ${currentCommit}`);
+    core.info(`currentCommit: ${currentCommit}`);
     const filesPaths = yield (0, globby_1.default)(files);
-    core.debug(`filesPaths: ${filesPaths}`);
+    core.info(`filesPaths: ${filesPaths}`);
     const filesBlobs = yield Promise.all(filesPaths.map((0, github_1.createBlobForFile)(token)));
-    core.debug(`filesBlobs: ${filesBlobs}`);
+    core.info(`filesBlobs: ${filesBlobs}`);
     // verificar se é necessário
     const pathsForBlobs = filesPaths.map((fullPath) => path_1.default.relative(".", fullPath));
-    core.debug(`pathsForBlobs: ${pathsForBlobs}`);
+    core.info(`pathsForBlobs: ${pathsForBlobs}`);
     const newTree = yield (0, github_1.createNewTree)(token, filesBlobs, pathsForBlobs, currentCommit.treeSha);
     const commitMessage = `Upload translation files`;
     const newCommit = yield (0, github_1.createNewCommit)(token, commitMessage, newTree.sha, currentCommit.commitSha);
