@@ -100,21 +100,21 @@ exports.createBlobForFile = createBlobForFile;
 const getCurrentCommit = (token) => __awaiter(void 0, void 0, void 0, function* () {
     const { repo, owner } = github.context.repo;
     const octokit = github.getOctokit(token);
-    const { data: refData } = yield octokit.rest.git.getRef({
-        owner,
-        repo,
-        ref: github.context.ref,
-    });
-    const commitSha = refData.object.sha;
-    core.info(`commitSha: ${commitSha}`);
+    core.info(`commitSha: ${github.context.ref}`);
+    // const { data: refData } = await octokit.rest.git.getRef({
+    //   owner,
+    //   repo,
+    //   ref: github.context.ref,
+    // });
+    // const commitSha = refData.object.sha;
     const { data: commitData } = yield octokit.rest.git.getCommit({
         owner,
         repo,
-        commit_sha: commitSha,
+        commit_sha: github.context.sha,
     });
     core.info(`commitSha: ${commitData.tree.sha}`);
     return {
-        commitSha,
+        commitSha: github.context.sha,
         treeSha: commitData.tree.sha,
     };
 });
