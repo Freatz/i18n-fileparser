@@ -52,7 +52,8 @@ const core = __importStar(__nccwpck_require__(2186));
 const processCsv_1 = __nccwpck_require__(1901);
 const processNotion_1 = __nccwpck_require__(3246);
 const createFiles = () => __awaiter(void 0, void 0, void 0, function* () {
-    const filePath = core.getInput("filePath");
+    // const filePath: string = core.getInput("filePath");
+    const filePath = "translations-to-test.csv";
     if (filePath) {
         return (0, processCsv_1.processCSV)(filePath).then((files) => {
             return files;
@@ -436,13 +437,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.writeJSONFile = void 0;
-const fs = __nccwpck_require__(5747);
+const fs = __nccwpck_require__(5630);
 const core = __importStar(__nccwpck_require__(2186));
 const writeJSONFile = (data, language) => __awaiter(void 0, void 0, void 0, function* () {
     const objToWrite = JSON.stringify(data, null, 2);
     const destination = core.getInput("destination");
     const path = `${destination}/${language}.json`;
-    yield fs.writeFile(path, objToWrite, (err) => {
+    yield fs.outputFile(path, objToWrite, (err) => {
         if (err)
             throw err;
         core.info(`Translation to ${language} written to file.`);

@@ -3,7 +3,8 @@ import { processCSV } from "./processCsv";
 import { processNotion } from "./processNotion";
 
 export const createFiles = async () => {
-  const filePath: string = core.getInput("filePath");
+  // const filePath: string = core.getInput("filePath");
+  const filePath = "translations-to-test.csv";
 
   if (filePath) {
     return processCSV(filePath).then((files) => {
