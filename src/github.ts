@@ -97,6 +97,7 @@ export const setBranchToCommit = (token: string, commitSha: string) => {
   const octokit = github.getOctokit(token);
   const { repo, owner } = github.context.repo;
 
+  core.info(`ref: ${github.context.ref}`);
   return octokit.rest.git.updateRef({
     owner,
     repo,
