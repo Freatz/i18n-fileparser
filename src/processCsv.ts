@@ -33,5 +33,3 @@ export async function processCSV(filePath: string): Promise<any> {
   );
   return results;
 }
-
-// [{}, {}]

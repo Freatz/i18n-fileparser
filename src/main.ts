@@ -6,7 +6,6 @@ async function run(): Promise<void> {
   try {
     const token = core.getInput("myToken");
     const files = await createFiles();
-    console.log(files);
     await commitAndPush(token, files);
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);
@@ -14,6 +13,3 @@ async function run(): Promise<void> {
 }
 
 run();
-
-// npm run build && npm run package
-// git add commit

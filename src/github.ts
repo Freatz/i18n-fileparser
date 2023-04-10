@@ -23,7 +23,6 @@ export const createNewTree = async (
 
   const { repo, owner } = github.context.repo;
 
-  core.debug(`repo: ${repo}, owner: ${owner}`);
   const tree = blobs.map(({ sha }, index) => ({
     path: paths[index],
     mode: `100644`,
@@ -79,7 +78,6 @@ export const createBlobForFile =
 export const getCurrentCommit = async (token: string) => {
   const { repo, owner } = github.context.repo;
   const octokit = github.getOctokit(token);
-  core.info(`commitSha: ${github.context.ref}`);
 
   const { data: commitData } = await octokit.rest.git.getCommit({
     owner,
@@ -98,7 +96,6 @@ export const setBranchToCommit = (token: string, commitSha: string) => {
   const { repo, owner } = github.context.repo;
 
   const ref = github.context.ref.replace("refs/", "");
-  core.info(`ref: ${ref}`);
 
   return octokit.rest.git.updateRef({
     owner,

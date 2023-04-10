@@ -19,5 +19,4 @@ export const createFiles = async () => {
     }
     return await processNotion(notionSecret, notionId);
   }
-  //   core.debug(`files: ${files}`);
 };

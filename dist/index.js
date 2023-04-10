@@ -66,7 +66,6 @@ const createFiles = () => __awaiter(void 0, void 0, void 0, function* () {
         }
         return yield (0, processNotion_1.processNotion)(notionSecret, notionId);
     }
-    //   core.debug(`files: ${files}`);
 });
 exports.createFiles = createFiles;
 
@@ -112,13 +111,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.setBranchToCommit = exports.getCurrentCommit = exports.createBlobForFile = exports.createNewCommit = exports.createNewTree = void 0;
-const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
 const fs_extra_1 = __nccwpck_require__(5630);
 const createNewTree = (token, blobs, paths, parentTreeSha) => __awaiter(void 0, void 0, void 0, function* () {
     const octokit = github.getOctokit(token);
     const { repo, owner } = github.context.repo;
-    core.debug(`repo: ${repo}, owner: ${owner}`);
     const tree = blobs.map(({ sha }, index) => ({
         path: paths[index],
         mode: `100644`,
@@ -164,7 +161,6 @@ exports.createBlobForFile = createBlobForFile;
 const getCurrentCommit = (token) => __awaiter(void 0, void 0, void 0, function* () {
     const { repo, owner } = github.context.repo;
     const octokit = github.getOctokit(token);
-    core.info(`commitSha: ${github.context.ref}`);
     const { data: commitData } = yield octokit.rest.git.getCommit({
         owner,
         repo,
@@ -180,7 +176,6 @@ const setBranchToCommit = (token, commitSha) => {
     const octokit = github.getOctokit(token);
     const { repo, owner } = github.context.repo;
     const ref = github.context.ref.replace("refs/", "");
-    core.info(`ref: ${ref}`);
     return octokit.rest.git.updateRef({
         owner,
         repo,
@@ -239,7 +234,6 @@ function run() {
         try {
             const token = core.getInput("myToken");
             const files = yield (0, createFiles_1.createFiles)();
-            console.log(files);
             yield (0, uploadToGit_1.commitAndPush)(token, files);
         }
         catch (error) {
@@ -249,8 +243,6 @@ function run() {
     });
 }
 run();
-// npm run build && npm run package
-// git add commit
 
 
 /***/ }),
@@ -325,7 +317,6 @@ function processCSV(filePath) {
     });
 }
 exports.processCSV = processCSV;
-// [{}, {}]
 
 
 /***/ }),
@@ -346,7 +337,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.processNotion = void 0;
-const fs = __nccwpck_require__(5747);
 const _ = __nccwpck_require__(250);
 const { Client } = __nccwpck_require__(324);
 const writer_1 = __nccwpck_require__(5829);
@@ -368,7 +358,8 @@ function processNotion(notionSecret, notionId) {
             database_id: notionId,
         });
         const languageNotionKeys = Object.keys(notionPages.results[0].properties).slice(0, -1);
-        return languageNotionKeys.forEach((language) => buildNotionFiles(notionPages.results, language));
+        const results = Promise.all(languageNotionKeys.map((language) => __awaiter(this, void 0, void 0, function* () { return yield buildNotionFiles(notionPages.results, language); })));
+        return results;
     });
 }
 exports.processNotion = processNotion;
@@ -381,29 +372,6 @@ exports.processNotion = processNotion;
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -415,23 +383,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.commitAndPush = void 0;
-const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5928);
-// pegar os varios arquivos gerados
-// commit
-// push
 const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, function* () {
     const currentCommit = yield (0, github_1.getCurrentCommit)(token);
-    core.info(`currentCommit: ${JSON.stringify(currentCommit)}`);
-    core.info(`filesPaths: ${JSON.stringify(files)}`);
     const filesBlobs = yield Promise.all(files.map((0, github_1.createBlobForFile)(token)));
-    core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
-    // verificar se é necessário
     const newTree = yield (0, github_1.createNewTree)(token, filesBlobs, files, currentCommit.treeSha);
-    core.info(`newTree: ${JSON.stringify(newTree)}`);
     const commitMessage = `Upload translation files`;
     const newCommit = yield (0, github_1.createNewCommit)(token, commitMessage, newTree.sha, currentCommit.commitSha);
-    core.info(`commit: ${JSON.stringify(newCommit)}`);
     yield (0, github_1.setBranchToCommit)(token, newCommit.sha);
 });
 exports.commitAndPush = commitAndPush;
@@ -483,7 +441,7 @@ const core = __importStar(__nccwpck_require__(2186));
 const writeJSONFile = (data, language) => __awaiter(void 0, void 0, void 0, function* () {
     const objToWrite = JSON.stringify(data, null, 2);
     const destination = core.getInput("destination");
-    const path = `${language}.json`;
+    const path = `${destination}/${language}.json`;
     yield fs.writeFile(path, objToWrite, (err) => {
         if (err)
             throw err;

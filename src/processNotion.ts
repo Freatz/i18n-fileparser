@@ -1,4 +1,3 @@
-const fs = require("fs");
 const _ = require("lodash");
 const { Client } = require("@notionhq/client");
 import { writeJSONFile } from "./writer";
@@ -29,7 +28,10 @@ export async function processNotion(
     notionPages.results[0].properties
   ).slice(0, -1);
 
-  return languageNotionKeys.forEach((language) =>
-    buildNotionFiles(notionPages.results, language)
+  const results = Promise.all(
+    languageNotionKeys.map(
+      async (language) => await buildNotionFiles(notionPages.results, language)
+    )
   );
+  return results;
 }
