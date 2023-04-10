@@ -5,9 +5,10 @@ import { processNotion } from "./processNotion";
 export const createFiles = async () => {
   const filePath: string = core.getInput("filePath");
 
-  let files = [];
   if (filePath) {
-    files = await processCSV(filePath);
+    return processCSV(filePath).then((files) => {
+      return files;
+    });
   }
 
   if (!filePath) {
@@ -16,8 +17,7 @@ export const createFiles = async () => {
     if (!notionId || !notionSecret) {
       return core.setFailed("Missing inputs information to parse translation.");
     }
-    await processNotion(notionSecret, notionId);
+    return await processNotion(notionSecret, notionId);
   }
-  core.debug(`files: ${files}`);
-  return files;
+  //   core.debug(`files: ${files}`);
 };

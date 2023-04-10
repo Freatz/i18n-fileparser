@@ -13,4 +13,3 @@ export const writeJSONFile = async (data: any, language: string) => {
 
   return path;
 };
-

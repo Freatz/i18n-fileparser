@@ -19,16 +19,19 @@ const buildCSVFiles = async (data: any[], lang: string) => {
   for (const row of data) {
     _.set(obj, row.key, row[lang]);
   }
-  return await writeJSONFile(obj, lang);
+
+  const file = await writeJSONFile(obj, lang);
+  return file;
 };
 
 export async function processCSV(filePath: string): Promise<any> {
   const data = await readCsv(filePath);
   const languageKeys = Object.keys(data[0]).slice(1);
 
-  return languageKeys.map(
-    async (language) => await buildCSVFiles(data, language)
+  const results = Promise.all(
+    languageKeys.map(async (language) => await buildCSVFiles(data, language))
   );
+  return results;
 }
 
 // [{}, {}]

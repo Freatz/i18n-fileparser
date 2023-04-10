@@ -53,9 +53,10 @@ const processCsv_1 = __nccwpck_require__(1901);
 const processNotion_1 = __nccwpck_require__(3246);
 const createFiles = () => __awaiter(void 0, void 0, void 0, function* () {
     const filePath = core.getInput("filePath");
-    let files = [];
     if (filePath) {
-        files = yield (0, processCsv_1.processCSV)(filePath);
+        return (0, processCsv_1.processCSV)(filePath).then((files) => {
+            return files;
+        });
     }
     if (!filePath) {
         const notionSecret = core.getInput("notionSecret");
@@ -63,10 +64,9 @@ const createFiles = () => __awaiter(void 0, void 0, void 0, function* () {
         if (!notionId || !notionSecret) {
             return core.setFailed("Missing inputs information to parse translation.");
         }
-        yield (0, processNotion_1.processNotion)(notionSecret, notionId);
+        return yield (0, processNotion_1.processNotion)(notionSecret, notionId);
     }
-    core.debug(`files: ${files}`);
-    return files;
+    //   core.debug(`files: ${files}`);
 });
 exports.createFiles = createFiles;
 
@@ -237,6 +237,7 @@ function run() {
         try {
             const token = core.getInput("myToken");
             const files = yield (0, createFiles_1.createFiles)();
+            console.log(files);
             yield (0, uploadToGit_1.commitAndPush)(token, files);
         }
         catch (error) {
@@ -310,13 +311,15 @@ const buildCSVFiles = (data, lang) => __awaiter(void 0, void 0, void 0, function
     for (const row of data) {
         _.set(obj, row.key, row[lang]);
     }
-    return yield (0, writer_1.writeJSONFile)(obj, lang);
+    const file = yield (0, writer_1.writeJSONFile)(obj, lang);
+    return file;
 });
 function processCSV(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
         const data = yield readCsv(filePath);
         const languageKeys = Object.keys(data[0]).slice(1);
-        return languageKeys.map((language) => __awaiter(this, void 0, void 0, function* () { return yield buildCSVFiles(data, language); }));
+        const results = Promise.all(languageKeys.map((language) => __awaiter(this, void 0, void 0, function* () { return yield buildCSVFiles(data, language); })));
+        return results;
     });
 }
 exports.processCSV = processCSV;
