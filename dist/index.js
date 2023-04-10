@@ -52,8 +52,7 @@ const core = __importStar(__nccwpck_require__(2186));
 const processCsv_1 = __nccwpck_require__(1901);
 const processNotion_1 = __nccwpck_require__(3246);
 const createFiles = () => __awaiter(void 0, void 0, void 0, function* () {
-    // const filePath: string = core.getInput("filePath");
-    const filePath = "translations-to-test.csv";
+    const filePath = core.getInput("filePath");
     if (filePath) {
         return (0, processCsv_1.processCSV)(filePath).then((files) => {
             return files;
