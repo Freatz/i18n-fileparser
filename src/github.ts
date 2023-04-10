@@ -1,3 +1,4 @@
+import * as core from "@actions/core";
 import github from "@actions/github";
 import { readFile } from "fs-extra";
 
@@ -20,14 +21,15 @@ export const createNewTree = async (
 ) => {
   const octokit = github.getOctokit(token);
 
+  const { repo, owner } = github.context.repo;
+
+  core.debug(`repo: ${repo}, owner: ${owner}`);
   const tree = blobs.map(({ sha }, index) => ({
     path: paths[index],
     mode: `100644`,
     type: `blob`,
     sha,
   })) as Tree[];
-
-  const { repo, owner } = github.context.repo;
 
   const { data } = await octokit.rest.git.createTree({
     owner,
