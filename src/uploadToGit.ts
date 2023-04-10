@@ -28,6 +28,8 @@ export const commitAndPush = async (token: string, files: string[]) => {
     files,
     currentCommit.treeSha
   );
+  core.info(`newTree: ${JSON.stringify(newTree)}`);
+
   const commitMessage = `Upload translation files`;
   const newCommit = await createNewCommit(
     token,
@@ -35,5 +37,7 @@ export const commitAndPush = async (token: string, files: string[]) => {
     newTree.sha,
     currentCommit.commitSha
   );
+  core.info(`commit: ${JSON.stringify(newCommit)}`);
+
   await setBranchToCommit(token, newCommit.sha);
 };
