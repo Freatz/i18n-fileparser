@@ -6,16 +6,16 @@ import {
   getCurrentCommit,
   setBranchToCommit,
 } from "./github";
-import glob from "globby";
+import { globby } from "globby";
 import path from "path";
 
 export const commitAndPush = async (token: string, files: string) => {
   const currentCommit = await getCurrentCommit(token);
-  const filesPaths = await glob(files);
+  const filesPaths = await globby(files);
   const filesBlobs = await Promise.all(
     filesPaths.map(createBlobForFile(token))
   );
-  const pathsForBlobs = filesPaths.map((fullPath) =>
+  const pathsForBlobs = filesPaths.map((fullPath: string) =>
     path.relative(files, fullPath)
   );
   core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
