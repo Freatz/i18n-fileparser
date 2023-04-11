@@ -411,11 +411,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.commitAndPush = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const github_1 = __nccwpck_require__(5928);
-const globby_1 = __importDefault(__nccwpck_require__(1428));
+const globby_1 = __nccwpck_require__(1428);
 const path_1 = __importDefault(__nccwpck_require__(5622));
 const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, function* () {
     const currentCommit = yield (0, github_1.getCurrentCommit)(token);
-    const filesPaths = yield (0, globby_1.default)(files);
+    const filesPaths = yield (0, globby_1.globby)(files);
     const filesBlobs = yield Promise.all(filesPaths.map((0, github_1.createBlobForFile)(token)));
     const pathsForBlobs = filesPaths.map((fullPath) => path_1.default.relative(files, fullPath));
     core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
