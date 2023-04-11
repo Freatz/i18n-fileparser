@@ -9,7 +9,7 @@ import {
 import { globby } from "globby";
 import path from "path";
 
-export const commitAndPush = async (token: string, files: string) => {
+export const commitAndPush = async (token: string, files: string[]) => {
   const currentCommit = await getCurrentCommit(token);
   const filesPaths = await globby(files);
   const filesBlobs = await Promise.all(
@@ -18,8 +18,8 @@ export const commitAndPush = async (token: string, files: string) => {
   core.info(`files: ${JSON.stringify(files)}`);
   core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
   core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
-  const pathsForBlobs = filesPaths.map((fullPath: string) =>
-    path.relative(files, fullPath)
+  const pathsForBlobs = filesPaths.map((fullPath: string, index) =>
+    path.relative(files[index], fullPath)
   );
   core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
   const newTree = await createNewTree(
