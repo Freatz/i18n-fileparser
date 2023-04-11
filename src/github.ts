@@ -20,13 +20,13 @@ export const createNewTree = async (
   parentTreeSha: string
 ) => {
   const octokit = github.getOctokit(token);
-
+  const destination: string = core.getInput("destination");
   const { repo, owner } = github.context.repo;
 
   const tree = blobs.map(({ sha }, index) => ({
     path: paths[index],
-    mode: `100644`,
-    type: `blob`,
+    mode: destination ? `040000` : `100644`,
+    type: destination ? `tree` : `blob`,
     sha,
   })) as Tree[];
 
