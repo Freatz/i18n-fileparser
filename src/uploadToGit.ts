@@ -1,3 +1,4 @@
+import * as core from "@actions/core";
 import {
   createBlobForFile,
   createNewCommit,
@@ -5,14 +6,25 @@ import {
   getCurrentCommit,
   setBranchToCommit,
 } from "./github";
+import glob from "globby";
+import path from "path";
 
-export const commitAndPush = async (token: string, files: string[]) => {
+export const commitAndPush = async (token: string, files: string) => {
   const currentCommit = await getCurrentCommit(token);
-  const filesBlobs = await Promise.all(files.map(createBlobForFile(token)));
+  const filesPaths = await glob(files);
+  const filesBlobs = await Promise.all(
+    filesPaths.map(createBlobForFile(token))
+  );
+  const pathsForBlobs = filesPaths.map((fullPath) =>
+    path.relative(files, fullPath)
+  );
+  core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
+  core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
+  core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
   const newTree = await createNewTree(
     token,
     filesBlobs,
-    files,
+    pathsForBlobs,
     currentCommit.treeSha
   );
   const commitMessage = `Upload translation files`;

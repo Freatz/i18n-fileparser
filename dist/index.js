@@ -111,17 +111,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.setBranchToCommit = exports.getCurrentCommit = exports.createBlobForFile = exports.createNewCommit = exports.createNewTree = void 0;
-const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
 const fs_extra_1 = __nccwpck_require__(5630);
 const createNewTree = (token, blobs, paths, parentTreeSha) => __awaiter(void 0, void 0, void 0, function* () {
     const octokit = github.getOctokit(token);
-    const destination = core.getInput("destination");
     const { repo, owner } = github.context.repo;
     const tree = blobs.map(({ sha }, index) => ({
         path: paths[index],
-        mode: destination ? `040000` : `100644`,
-        type: destination ? `tree` : `blob`,
+        mode: `120000`,
+        type: `blob`,
         sha,
     }));
     const { data } = yield octokit.rest.git.createTree({
