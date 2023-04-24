@@ -19,7 +19,7 @@ export const commitAndPush = async (token: string, files: string[]) => {
   core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
   core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
   const pathsForBlobs = filesPaths.map((fullPath: string, index: number) =>
-    path.relative("", fullPath)
+    path.relative(".", fullPath)
   );
   core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
   const newTree = await createNewTree(
