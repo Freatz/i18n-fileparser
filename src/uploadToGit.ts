@@ -1,4 +1,6 @@
 import * as core from "@actions/core";
+import { globby } from "globby";
+import path from "path";
 import {
   createBlobForFile,
   createNewCommit,
@@ -6,8 +8,6 @@ import {
   getCurrentCommit,
   setBranchToCommit,
 } from "./github";
-import { globby } from "globby";
-import path from "path";
 
 export const commitAndPush = async (token: string, files: string[]) => {
   const currentCommit = await getCurrentCommit(token);
@@ -19,7 +19,7 @@ export const commitAndPush = async (token: string, files: string[]) => {
   core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
   core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
   const pathsForBlobs = filesPaths.map((fullPath: string, index: number) =>
-    path.relative(files[index], fullPath)
+    path.relative("", fullPath)
   );
   core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
   const newTree = await createNewTree(

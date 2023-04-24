@@ -410,9 +410,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.commitAndPush = void 0;
 const core = __importStar(__nccwpck_require__(2186));
-const github_1 = __nccwpck_require__(5928);
 const globby_1 = __nccwpck_require__(1428);
 const path_1 = __importDefault(__nccwpck_require__(5622));
+const github_1 = __nccwpck_require__(5928);
 const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, function* () {
     const currentCommit = yield (0, github_1.getCurrentCommit)(token);
     const filesPaths = yield (0, globby_1.globby)(files);
@@ -420,7 +420,7 @@ const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, functi
     core.info(`files: ${JSON.stringify(files)}`);
     core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
     core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
-    const pathsForBlobs = filesPaths.map((fullPath, index) => path_1.default.relative(files[index], fullPath));
+    const pathsForBlobs = filesPaths.map((fullPath, index) => path_1.default.relative("", fullPath));
     core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
     const newTree = yield (0, github_1.createNewTree)(token, filesBlobs, pathsForBlobs, currentCommit.treeSha);
     const commitMessage = `Upload translation files`;
@@ -4500,7 +4500,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 var universalUserAgent = __nccwpck_require__(5030);
 var beforeAfterHook = __nccwpck_require__(3682);
-var request = __nccwpck_require__(6234);
+var request = __nccwpck_require__(5712);
 var graphql = __nccwpck_require__(8467);
 var authToken = __nccwpck_require__(334);
 
@@ -5080,7 +5080,7 @@ exports.endpoint = endpoint;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 
-var request = __nccwpck_require__(6234);
+var request = __nccwpck_require__(5712);
 var universalUserAgent = __nccwpck_require__(5030);
 
 const VERSION = "4.8.0";
@@ -6608,7 +6608,7 @@ exports.RequestError = RequestError;
 
 /***/ }),
 
-/***/ 6234:
+/***/ 5712:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
@@ -8941,7 +8941,7 @@ exports.default = ProviderStream;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const sync_1 = __nccwpck_require__(8821);
+const sync_1 = __nccwpck_require__(6234);
 const provider_1 = __nccwpck_require__(257);
 class ProviderSync extends provider_1.default {
     constructor() {
@@ -9147,7 +9147,7 @@ exports.default = ReaderStream;
 
 /***/ }),
 
-/***/ 8821:
+/***/ 6234:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
