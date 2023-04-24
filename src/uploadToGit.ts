@@ -12,7 +12,7 @@ import {
 export const commitAndPush = async (token: string, files: string[]) => {
   const currentCommit = await getCurrentCommit(token);
   // const filesPaths = await globby(files);
-  const filePath: string = core.getInput("filePath");
+  const filePath: string = core.getInput("destination");
 
   const filesPaths = await globby(filePath);
   const filesBlobs = await Promise.all(
