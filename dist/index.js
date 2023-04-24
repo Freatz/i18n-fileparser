@@ -419,6 +419,8 @@ const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, functi
     const filePath = core.getInput("filePath");
     const filesPaths = yield (0, globby_1.globby)(filePath);
     const filesBlobs = yield Promise.all(filesPaths.map((0, github_1.createBlobForFile)(token)));
+    core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
+    core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
     const pathsForBlobs = filesPaths.map((fullPath) => path_1.default.relative(filePath, fullPath));
     core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
     const newTree = yield (0, github_1.createNewTree)(token, filesBlobs, filesPaths, currentCommit.treeSha);

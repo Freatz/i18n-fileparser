@@ -18,6 +18,8 @@ export const commitAndPush = async (token: string, files: string[]) => {
   const filesBlobs = await Promise.all(
     filesPaths.map(createBlobForFile(token))
   );
+  core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
+  core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
 
   const pathsForBlobs = filesPaths.map((fullPath: string) =>
     path.relative(filePath, fullPath)
