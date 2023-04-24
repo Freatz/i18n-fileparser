@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import { globby } from "globby";
-import path from "path";
 import {
   createBlobForFile,
   createNewCommit,
@@ -23,14 +22,14 @@ export const commitAndPush = async (token: string, files: string[]) => {
   core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
   core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
 
-  const pathsForBlobs = filesPaths.map((fullPath: string) =>
-    path.relative(filePath, fullPath)
-  );
-  core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
+  // const pathsForBlobs = filesPaths.map((fullPath: string) =>
+  //   path.relative(filePath, fullPath)
+  // );
+  // core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
   const newTree = await createNewTree(
     token,
     filesBlobs,
-    pathsForBlobs,
+    filesPaths,
     currentCommit.treeSha
   );
   const commitMessage = `Upload translation files`;

@@ -404,14 +404,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.commitAndPush = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const globby_1 = __nccwpck_require__(1428);
-const path_1 = __importDefault(__nccwpck_require__(5622));
 const github_1 = __nccwpck_require__(5928);
 const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, function* () {
     const currentCommit = yield (0, github_1.getCurrentCommit)(token);
@@ -422,9 +418,11 @@ const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, functi
     const filesBlobs = yield Promise.all(filesPaths.map((0, github_1.createBlobForFile)(token)));
     core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
     core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
-    const pathsForBlobs = filesPaths.map((fullPath) => path_1.default.relative(filePath, fullPath));
-    core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
-    const newTree = yield (0, github_1.createNewTree)(token, filesBlobs, pathsForBlobs, currentCommit.treeSha);
+    // const pathsForBlobs = filesPaths.map((fullPath: string) =>
+    //   path.relative(filePath, fullPath)
+    // );
+    // core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
+    const newTree = yield (0, github_1.createNewTree)(token, filesBlobs, filesPaths, currentCommit.treeSha);
     const commitMessage = `Upload translation files`;
     const newCommit = yield (0, github_1.createNewCommit)(token, commitMessage, newTree.sha, currentCommit.commitSha);
     yield (0, github_1.setBranchToCommit)(token, newCommit.sha);
