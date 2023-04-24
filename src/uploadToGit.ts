@@ -14,6 +14,8 @@ export const commitAndPush = async (token: string, files: string[]) => {
   // const filesPaths = await globby(files);
   const filePath: string = core.getInput("destination");
 
+  core.info(`filePath: ${JSON.stringify(filePath)}`);
+
   const filesPaths = await globby(filePath);
   const filesBlobs = await Promise.all(
     filesPaths.map(createBlobForFile(token))
