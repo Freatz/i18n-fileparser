@@ -8,9 +8,8 @@ import {
   setBranchToCommit,
 } from "./github";
 
-export const commitAndPush = async (token: string, files: string[]) => {
+export const commitAndPush = async (token: string) => {
   const currentCommit = await getCurrentCommit(token);
-  // const filesPaths = await globby(files);
   const filePath: string = core.getInput("destination");
 
   core.info(`filePath: ${JSON.stringify(filePath)}`);
@@ -19,13 +18,7 @@ export const commitAndPush = async (token: string, files: string[]) => {
   const filesBlobs = await Promise.all(
     filesPaths.map(createBlobForFile(token))
   );
-  core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
-  core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
 
-  // const pathsForBlobs = filesPaths.map((fullPath: string) =>
-  //   path.relative(filePath, fullPath)
-  // );
-  // core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
   const newTree = await createNewTree(
     token,
     filesBlobs,
