@@ -416,7 +416,8 @@ const github_1 = __nccwpck_require__(5928);
 const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, function* () {
     const currentCommit = yield (0, github_1.getCurrentCommit)(token);
     // const filesPaths = await globby(files);
-    const filePath = core.getInput("filePath");
+    const filePath = core.getInput("destination");
+    core.info(`filePath: ${JSON.stringify(filePath)}`);
     const filesPaths = yield (0, globby_1.globby)(filePath);
     const filesBlobs = yield Promise.all(filesPaths.map((0, github_1.createBlobForFile)(token)));
     core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
