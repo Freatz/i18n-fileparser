@@ -30,7 +30,7 @@ export const commitAndPush = async (token: string, files: string[]) => {
   const newTree = await createNewTree(
     token,
     filesBlobs,
-    filesPaths,
+    pathsForBlobs,
     currentCommit.treeSha
   );
   const commitMessage = `Upload translation files`;

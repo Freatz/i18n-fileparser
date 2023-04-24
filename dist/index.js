@@ -424,7 +424,7 @@ const commitAndPush = (token, files) => __awaiter(void 0, void 0, void 0, functi
     core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
     const pathsForBlobs = filesPaths.map((fullPath) => path_1.default.relative(filePath, fullPath));
     core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
-    const newTree = yield (0, github_1.createNewTree)(token, filesBlobs, filesPaths, currentCommit.treeSha);
+    const newTree = yield (0, github_1.createNewTree)(token, filesBlobs, pathsForBlobs, currentCommit.treeSha);
     const commitMessage = `Upload translation files`;
     const newCommit = yield (0, github_1.createNewCommit)(token, commitMessage, newTree.sha, currentCommit.commitSha);
     yield (0, github_1.setBranchToCommit)(token, newCommit.sha);
