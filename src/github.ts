@@ -22,7 +22,7 @@ export const createNewTree = async (
   const octokit = github.getOctokit(token);
 
   const { repo, owner } = github.context.repo;
-
+  
   const tree = blobs.map(({ sha }, index) => ({
     path: paths[index],
     mode: `100644`,
