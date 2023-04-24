@@ -18,7 +18,7 @@ export const commitAndPush = async (token: string, files: string[]) => {
   core.info(`files: ${JSON.stringify(files)}`);
   core.info(`filesBlobs: ${JSON.stringify(filesBlobs)}`);
   core.info(`filesPaths: ${JSON.stringify(filesPaths)}`);
-  const pathsForBlobs = filesPaths.map((fullPath: string, index) =>
+  const pathsForBlobs = filesPaths.map((fullPath: string, index: number) =>
     path.relative(files[index], fullPath)
   );
   core.info(`pathsForBlobs: ${JSON.stringify(pathsForBlobs)}`);
