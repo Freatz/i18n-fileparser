@@ -1,10 +1,16 @@
-name: 'i18n-Parser'
-description: 'Parse csv with translations into json for i18next'
+name: "i18n-Parser"
+description: "Parse csv with translations into json for i18next"
 inputs:
-  filePath:  # id of input
-    description: 'Path of the csv file'
-    required: true
-    default: 'translations.csv'
+  filePath: # id of input
+    description: "Path of the csv file"
+  notionSecret:
+    description: "Secret to connect with Notion"
+  notionID:
+    description: "Database ID"
+  myToken:
+    description: "Token for github"
+  destination:
+    description: "Path of the destination for the translation files"
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node16"
+  main: "dist/index.js"
